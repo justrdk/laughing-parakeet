@@ -26,8 +26,12 @@
               <div class="field">
                 <div class="field" :class="fieldClassName(formstate.lastname)">
                   <validate auto-label class="form-group required-field">
-                    <input class="Form--input" v-model ="model.lastname"
-                    type="text" name="lastname" placeholder="Last Name" required>
+                    <div class="ui icon input">
+                      <i class="checkmark icon"
+                      v-show="formstate.lastname && (formstate.lastname.$dirty || formstate.lastname.$touched || formstate.lastname.$submitted) && formstate.lastname.$valid"></i>
+                      <input class="Form--input" :class="fieldClassName(formstate.lastname)" v-model ="model.lastname"
+                      type="text" name="lastname" placeholder="Last Name" required>
+                    </div>
                   </validate>
                 </div>
               </div>
@@ -35,14 +39,22 @@
             <div class="two fields">
                 <div class="field" :class="fieldClassName(formstate.dob)">
                   <validate auto-label class="form-group required-field">
-                    <input class="Form--input" v-model="model.dob"
-                    type="text" name="dob" placeholder="Date of Birth" required>
+                    <div class="ui icon input">
+                      <i class="checkmark icon"
+                      v-show="formstate.dob && (formstate.dob.$dirty || formstate.dob.$touched || formstate.dob.$submitted) && formstate.dob.$valid"></i>
+                      <input class="Form--input" :class="fieldClassName(formstate.dob)" v-model ="model.dob"
+                      type="text" name="dob" placeholder="Date of birth" required>
+                    </div>
                   </validate>
                 </div>
                 <div class="field" :class="fieldClassName(formstate.email)">
                   <validate auto-label class="form-group required-field">
-                    <input class="Form--input" v-model ="model.email"
-                    type="email" name="email" placeholder="Email" required>
+                    <div class="ui icon input">
+                      <i class="checkmark icon"
+                      v-show="formstate.email && (formstate.email.$dirty || formstate.email.$touched || formstate.email.$submitted) && formstate.email.$valid"></i>
+                      <input class="Form--input" :class="fieldClassName(formstate.email)" v-model ="model.email"
+                      type="email" name="email" placeholder="Email" required>
+                    </div>
                   </validate>
               </div>
             </div>
@@ -52,22 +64,34 @@
                   <div class="field" :class="fieldClassName(formstate.address)">
                     <validate auto-label class="form-group required-field Form--label align-left">
                       <label>Address</label>
-                      <input class="Form--input" v-model ="model.address"
-                      type="text" name="address" placeholder="Address" required>
+                      <div class="ui icon input">
+                        <i class="checkmark icon"
+                        v-show="formstate.address && (formstate.address.$dirty || formstate.address.$touched || formstate.address.$submitted) && formstate.address.$valid"></i>
+                        <input class="Form--input" :class="fieldClassName(formstate.address)" v-model ="model.address"
+                        type="text" name="address" placeholder="Address" required>
+                      </div>
                     </validate>
                   </div>
                   <div class="field" :class="fieldClassName(formstate.house)">
                     <validate auto-label class="form-group required-field Form--label align-left">
                       <label>Model#</label>
-                      <input class="Form--input" v-model ="model.house"
-                      type="text" name="house" placeholder="House No." required>
+                      <div class="ui icon input">
+                        <i class="checkmark icon"
+                        v-show="formstate.house && (formstate.house.$dirty || formstate.house.$touched || formstate.house.$submitted) && formstate.house.$valid"></i>
+                        <input class="Form--input" :class="fieldClassName(formstate.house)" v-model ="model.house"
+                        type="number" name="house" placeholder="House No" required>
+                      </div>
                     </validate>
                   </div>
                   <div class="field" :class="fieldClassName(formstate.zipcode)">
                     <validate auto-label class="form-group required-field Form--label align-left">
                       <label>Zipcode</label>
-                      <input class="Form--input" v-model ="model.zipcode"
-                      type="number" name="address" placeholder="Zipcode" required>
+                      <div class="ui icon input">
+                        <i class="checkmark icon"
+                        v-show="formstate.zipcode && (formstate.zipcode.$dirty || formstate.zipcode.$touched || formstate.zipcode.$submitted) && formstate.zipcode.$valid"></i>
+                        <input class="Form--input" :class="fieldClassName(formstate.zipcode)" v-model ="model.zipcode"
+                        type="number" name="zipcode" placeholder="Zipcode" required>
+                      </div>
                     </validate>
                   </div>
                 </div>
@@ -75,8 +99,12 @@
               <div class="field" :class="fieldClassName(formstate.sex)">
                   <validate auto-label class="form-group required-field Form--label align-left">
                     <label>Sex</label>
-                    <input class="Form--input" v-model ="model.sex"
-                    type="text" name="sex" placeholder="Sex" required>
+                     <div class="ui icon input">
+                      <i class="checkmark icon"
+                      v-show="formstate.sex && (formstate.sex.$dirty || formstate.sex.$touched || formstate.sex.$submitted) && formstate.sex.$valid"></i>
+                      <input class="Form--input" :class="fieldClassName(formstate.sex)" v-model ="model.sex"
+                      type="text" name="sex" placeholder="Sex" required>
+                    </div>
                   </validate>
               </div>
             </div>
@@ -84,8 +112,13 @@
               <div class="field" :class="fieldClassName(formstate.motivation)">
                 <validate auto-label class="form-group required-field Form--label align-left">
                   <label>Your Motivation*</label>
-                  <textarea name="motivation" class="Form--textarea"
-                  v-model="model.motivation" rows="5" cols="50" required></textarea>
+                   <div class="ui icon input">
+                      <i class="checkmark icon"
+                      v-show="formstate.motivation && (formstate.motivation.$dirty || formstate.motivation.$touched || formstate.motivation.$submitted) && formstate.motivation.$valid"></i>
+                      <textarea name="motivation" class="Form--textarea" :class="fieldClassName(formstate.motivation)"
+                        v-model="model.motivation" rows="5" cols="50" required>
+                      </textarea>
+                    </div>
                 </validate>
               </div>
               <div class="field">
@@ -93,33 +126,39 @@
                 <div class="inline fields">
                   <div class="three wide field">
                     <label class="Form--uploadLabel align-left">Resume*</label>
+                     <i class="checkmark icon"
+                      v-show="validResume === true"></i>
                   </div>
                   <div class="four wide field">
                     <button class="fluid ui button Form--button">
                       <i class="desktop icon"></i> Upload
-                      <input type="file" class="Form--upload" />
+                      <input type="file" class="Form--upload" @change="resumeChange" />
                     </button>
                   </div>
                 </div>
                 <div class="inline fields">
                   <div class="three wide field">
                     <label class="Form--uploadLabel align-left">Portfolio</label>
+                    <i class="checkmark icon"
+                      v-show="validPortfolio === true"></i>
                   </div>
                   <div class="four wide field">
                     <button class="fluid ui button Form--button">
                       <i class="desktop icon"></i> Upload
-                      <input type="file" class="Form--upload" />
+                      <input type="file" class="Form--upload" @change="portfolioChange" />
                     </button>
                   </div>
                 </div>
                 <div class="inline fields">
                   <div class="three wide field">
                     <label class="Form--uploadLabel align-left">Photo</label>
+                    <i class="checkmark icon"
+                      v-show="validPhoto === true"></i>
                   </div>
                   <div class="four wide field">
                     <button class="fluid ui button Form--button">
                       <i class="desktop icon"></i> Upload
-                      <input type="file" class="Form--upload" />
+                      <input type="file" class="Form--upload" @change="photoChange" />
                     </button>
                   </div>
                 </div>
@@ -152,7 +191,13 @@ export default {
         zipcode: '',
         sex: '',
         motivation: '',
+        resume: '',
+        portfolio: '',
+        photo: '',
       },
+      validResume: false,
+      validPortfolio: false,
+      validPhoto: false,
     };
   },
   methods: {
@@ -167,6 +212,59 @@ export default {
         return 'error';
       }
       return false;
+    },
+    validPhotoType(type) {
+      switch (type) {
+        case 'jpg':
+        case 'png':
+          return true;
+        default:
+          return false;
+      }
+    },
+    validFileType(type) {
+      switch (type) {
+        case 'pdf':
+        case 'rtf':
+        case 'docx':
+        case 'txt':
+          return true;
+        default:
+          return false;
+      }
+    },
+    resumeChange(e) {
+      if (e.target.files.length === 1) {
+        const file = e.target.files[0];
+        const { name, type } = file;
+        this.resume = name;
+        const fileType = type.split('/')[1];
+        this.validResume = this.validFileType(fileType);
+      } else {
+        this.validResume = false;
+      }
+    },
+    portfolioChange(e) {
+      if (e.target.files.length === 1) {
+        const file = e.target.files[0];
+        const { name, type } = file;
+        this.resume = name;
+        const fileType = type.split('/')[1];
+        this.validPortfolio = this.validFileType(fileType);
+      } else {
+        this.validPortfolio = false;
+      }
+    },
+    photoChange(e) {
+      if (e.target.files.length === 1) {
+        const file = e.target.files[0];
+        const { name, type } = file;
+        this.resume = name;
+        const fileType = type.split('/')[1];
+        this.validPhoto = this.validPhotoType(fileType);
+      } else {
+        this.validPhoto = false;
+      }
     },
   },
 };
