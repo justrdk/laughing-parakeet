@@ -10,50 +10,79 @@
     <div class="row">
       <div class="sixteen wide column">
         <div class="ui container">
-          <div class="ui large form">
+          <vue-form :state="formstate" v-model="formstate" @submit.prevent="onSubmit" class="ui large form">
             <h4 class="ui header Form--information-title align-left">Personal Details*</h4>
             <div class="two fields">
-              <div class="field">
-                <input class="Form--input" type="text" name="first-name" placeholder="First Name">
+              <div class="field" :class="fieldClassName(formstate.firstname)">
+                <validate auto-label class="form-group required-field">
+                  <input class="Form--input" v-model ="model.firstname"
+                  type="text" name="firstname" placeholder="First Name" required>
+                </validate>
               </div>
               <div class="field">
-                <input class="Form--input" type="text" name="last-name" placeholder="Last Name">
+                <div class="field" :class="fieldClassName(formstate.lastname)">
+                  <validate auto-label class="form-group required-field">
+                    <input class="Form--input" v-model ="model.lastname"
+                    type="text" name="lastname" placeholder="Last Name" required>
+                  </validate>
+                </div>
               </div>
             </div>
             <div class="two fields">
-              <div class="field">
-                <input class="Form--input" type="text" name="dob" placeholder="Date of Birth">
-              </div>
-              <div class="field">
-                <input class="Form--input" type="email" name="email" placeholder="Email Address">
+                <div class="field" :class="fieldClassName(formstate.dob)">
+                  <validate auto-label class="form-group required-field">
+                    <input class="Form--input" v-model="model.dob"
+                    type="text" name="dob" placeholder="Date of Birth" required>
+                  </validate>
+                </div>
+                <div class="field" :class="fieldClassName(formstate.email)">
+                  <validate auto-label class="form-group required-field">
+                    <input class="Form--input" v-model ="model.email"
+                    type="email" name="email" placeholder="Email" required>
+                  </validate>
               </div>
             </div>
             <div class="two fields">
               <div class="field">
                 <div class="three fields">
-                  <div class="field">
-                    <label class="Form--label align-left">Address</label>
-                    <input class="Form--input" type="text" name="address" placeholder="Address">
+                  <div class="field" :class="fieldClassName(formstate.address)">
+                    <validate auto-label class="form-group required-field">
+                      <label class="Form--label align-left">Address</label>
+                      <input class="Form--input" v-model ="model.address"
+                      type="text" name="address" placeholder="Address" required>
+                    </validate>
                   </div>
-                  <div class="field">
-                    <label class="Form--label align-left">House#</label>
-                    <input class="Form--input" type="text" name="house" placeholder="House number">
+                  <div class="field" :class="fieldClassName(formstate.house)">
+                    <validate auto-label class="form-group required-field">
+                      <label class="Form--label align-left">Model#</label>
+                      <input class="Form--input" v-model ="model.house"
+                      type="text" name="house" placeholder="House No." required>
+                    </validate>
                   </div>
-                  <div class="field">
-                    <label class="Form--label align-left">Zipcode (Dutch)</label>
-                    <input class="Form--input" type="text" name="zipcode" placeholder="Dutch zipcode">
+                  <div class="field" :class="fieldClassName(formstate.zipcode)">
+                    <validate auto-label class="form-group required-field">
+                      <label class="Form--label align-left">Zipcode</label>
+                      <input class="Form--input" v-model ="model.zipcode"
+                      type="text" name="address" placeholder="Zipcode" required>
+                    </validate>
                   </div>
                 </div>
               </div>
-              <div class="field">
-                <label class="Form--label align-left">Sex</label>
-                <input class="Form--input" type="text" name="sex" placeholder="Sex">
+              <div class="field" :class="fieldClassName(formstate.sex)">
+                  <validate auto-label class="form-group required-field">
+                    <label class="Form--label align-left">Sex</label>
+                    <input class="Form--input" v-model ="model.sex"
+                    type="text" name="sex" placeholder="Sex" required>
+                  </validate>
               </div>
             </div>
             <div class="two fields">
-              <div class="field">
-                <label class="Form--label align-left">Your Motivation*</label>
-                <textarea class="Form--textarea" rows="5" cols="50"></textarea>
+              <div class="field" :class="fieldClassName(formstate.motivation)">
+                <validate auto-label class="form-group required-field">
+                  <label class="Form--label align-left">Your Motivation*</label>
+                  <textarea name="motivation" class="Form--textarea"
+                  v-model="model.motivation" rows="5" cols="50" required></textarea>
+                </validate>
               </div>
               <div class="field">
                 <label class="Form--label align-left">Attach your documents (pdf, doc(x), jpg max. 4 Mb)</label>
@@ -62,7 +91,10 @@
                     <label class="Form--label align-left">Resume*</label>
                   </div>
                   <div class="four wide field">
-                    <button class="fluid ui button Form--button"><i class="desktop icon"></i> Upload</button>
+                    <button class="fluid ui button Form--button">
+                      <i class="desktop icon"></i> Upload
+                      <input type="file" class="Form--upload" />
+                    </button>
                   </div>
                 </div>
                 <div class="inline fields">
@@ -70,7 +102,10 @@
                     <label class="Form--label align-left">Portfolio</label>
                   </div>
                   <div class="four wide field">
-                    <button class="fluid ui button Form--button"><i class="desktop icon"></i> Upload</button>
+                    <button class="fluid ui button Form--button">
+                      <i class="desktop icon"></i> Upload
+                      <input type="file" class="Form--upload" />
+                    </button>
                   </div>
                 </div>
                 <div class="inline fields">
@@ -78,12 +113,15 @@
                     <label class="Form--label align-left">Photo</label>
                   </div>
                   <div class="four wide field">
-                    <button class="fluid ui button Form--button"><i class="desktop icon"></i> Upload</button>
+                    <button class="fluid ui button Form--button">
+                      <i class="desktop icon"></i> Upload
+                      <input type="file" class="Form--upload" />
+                    </button>
                   </div>
                 </div>
               </div>
             </div>
-          </div> <!--endform-->
+          </vue-form> <!--endform-->
         </div> <!-- end container -->
       </div> <!-- end column -->
     </div> <!-- end row -->
@@ -91,6 +129,43 @@
 </template>
 
 <script>
+import VueForm from 'vue-form';
+import Vue from 'vue';
+
+Vue.use(VueForm);
+
+export default {
+  data() {
+    return {
+      formstate: {},
+      model: {
+        firstname: '',
+        lastname: '',
+        email: '',
+        dob: '',
+        address: '',
+        house: '',
+        zipcode: '',
+        sex: '',
+        motivation: '',
+      },
+    };
+  },
+  methods: {
+    fieldClassName(field) {
+      if (!field) {
+        return '';
+      }
+      if ((field.$touched || field.$submitted) && field.$valid) {
+        return 'success';
+      }
+      if ((field.$touched || field.$submitted) && field.$invalid) {
+        return 'error';
+      }
+      return false;
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -115,10 +190,12 @@
   }
   &--input, &--textarea {
     background: #ffffff;
-    border: none !important;
+    border: none;
     border-radius: 0px !important;
   }
   &--button {
+    position: relative;
+    overflow: hidden;
     background-color: #005c9d;
     color: #ffffff;
     border: none !important;
@@ -127,6 +204,20 @@
     font-size: 12px;
     font-weight: bold;
     letter-spacing: 0.5px;
+  }
+  &--upload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+  }
+  .error-field > input {
+    border: 2px solid red;
   }
 }
 </style>
