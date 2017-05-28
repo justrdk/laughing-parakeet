@@ -46,31 +46,31 @@
               <div class="field">
                 <div class="three fields">
                   <div class="field" :class="fieldClassName(formstate.address)">
-                    <validate auto-label class="form-group required-field">
-                      <label class="Form--label align-left">Address</label>
+                    <validate auto-label class="form-group required-field Form--label align-left">
+                      <label>Address</label>
                       <input class="Form--input" v-model ="model.address"
                       type="text" name="address" placeholder="Address" required>
                     </validate>
                   </div>
                   <div class="field" :class="fieldClassName(formstate.house)">
-                    <validate auto-label class="form-group required-field">
-                      <label class="Form--label align-left">Model#</label>
+                    <validate auto-label class="form-group required-field Form--label align-left">
+                      <label>Model#</label>
                       <input class="Form--input" v-model ="model.house"
                       type="text" name="house" placeholder="House No." required>
                     </validate>
                   </div>
                   <div class="field" :class="fieldClassName(formstate.zipcode)">
-                    <validate auto-label class="form-group required-field">
-                      <label class="Form--label align-left">Zipcode</label>
+                    <validate auto-label class="form-group required-field Form--label align-left">
+                      <label>Zipcode</label>
                       <input class="Form--input" v-model ="model.zipcode"
-                      type="text" name="address" placeholder="Zipcode" required>
+                      type="number" name="address" placeholder="Zipcode" required>
                     </validate>
                   </div>
                 </div>
               </div>
               <div class="field" :class="fieldClassName(formstate.sex)">
-                  <validate auto-label class="form-group required-field">
-                    <label class="Form--label align-left">Sex</label>
+                  <validate auto-label class="form-group required-field Form--label align-left">
+                    <label>Sex</label>
                     <input class="Form--input" v-model ="model.sex"
                     type="text" name="sex" placeholder="Sex" required>
                   </validate>
@@ -78,8 +78,8 @@
             </div>
             <div class="two fields">
               <div class="field" :class="fieldClassName(formstate.motivation)">
-                <validate auto-label class="form-group required-field">
-                  <label class="Form--label align-left">Your Motivation*</label>
+                <validate auto-label class="form-group required-field Form--label align-left">
+                  <label>Your Motivation*</label>
                   <textarea name="motivation" class="Form--textarea"
                   v-model="model.motivation" rows="5" cols="50" required></textarea>
                 </validate>
@@ -88,7 +88,7 @@
                 <label class="Form--label align-left">Attach your documents (pdf, doc(x), jpg max. 4 Mb)</label>
                 <div class="inline fields">
                   <div class="three wide field">
-                    <label class="Form--label align-left">Resume*</label>
+                    <label class="Form--uploadLabel align-left">Resume*</label>
                   </div>
                   <div class="four wide field">
                     <button class="fluid ui button Form--button">
@@ -99,7 +99,7 @@
                 </div>
                 <div class="inline fields">
                   <div class="three wide field">
-                    <label class="Form--label align-left">Portfolio</label>
+                    <label class="Form--uploadLabel align-left">Portfolio</label>
                   </div>
                   <div class="four wide field">
                     <button class="fluid ui button Form--button">
@@ -110,7 +110,7 @@
                 </div>
                 <div class="inline fields">
                   <div class="three wide field">
-                    <label class="Form--label align-left">Photo</label>
+                    <label class="Form--uploadLabel align-left">Photo</label>
                   </div>
                   <div class="four wide field">
                     <button class="fluid ui button Form--button">
@@ -177,13 +177,22 @@ export default {
     font-family: 'Yanone Kaffeesatz', sans-serif;
     font-size: 51px;
   }
-  &--information-title{
+  &--information-title {
     letter-spacing: 0.6px;
     font-family: 'Open Sans', sans-serif;
     font-size: 14px;
   }
+  &--label, &--uploadLabel {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    color: #000000;
+    letter-spacing: 0.6px;
+  }
   &--label {
-    font-size: 14px !important;
+    font-size: 14px;
+  }
+  &--uploadLabel {
+    font-size: 12px !important;
   }
   &--input {
     height: 42px;
