@@ -15,8 +15,12 @@
             <div class="two fields">
               <div class="field" :class="fieldClassName(formstate.firstname)">
                 <validate auto-label class="form-group required-field">
-                  <input class="Form--input" v-model ="model.firstname"
-                  type="text" name="firstname" placeholder="First Name" required>
+                  <div class="ui icon input">
+                    <i class="checkmark icon"
+                    v-show="formstate.firstname && (formstate.firstname.$dirty || formstate.firstname.$touched || formstate.firstname.$submitted) && formstate.firstname.$valid"></i>
+                    <input class="Form--input" :class="fieldClassName(formstate.firstname)" v-model ="model.firstname"
+                    type="text" name="firstname" placeholder="First Name" required>
+                  </div>
                 </validate>
               </div>
               <div class="field">
@@ -156,10 +160,10 @@ export default {
       if (!field) {
         return '';
       }
-      if ((field.$touched || field.$submitted) && field.$valid) {
+      if ((field.$dirty || field.$touched || field.$submitted) && field.$valid) {
         return 'success';
       }
-      if ((field.$touched || field.$submitted) && field.$invalid) {
+      if ((field.$dirty || field.$touched || field.$submitted) && field.$invalid) {
         return 'error';
       }
       return false;
@@ -196,6 +200,22 @@ export default {
   }
   &--input {
     height: 42px;
+    font-weight: bold;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px !important;
+    border: none !important;
+  }
+  input.success {
+    color: #01385f !important;
+    border: none !important;
+  }
+  input.error {
+    border: solid 1px #c80000 !important;
+  }
+  i.checkmark.icon {
+    color: #01385f;
+    font-size: 12px;
+    font-weight: bold;
   }
   &--input, &--textarea {
     background: #ffffff;
@@ -224,9 +244,6 @@ export default {
     cursor: pointer;
     opacity: 0;
     filter: alpha(opacity=0);
-  }
-  .error-field > input {
-    border: 2px solid red;
   }
 }
 </style>

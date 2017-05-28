@@ -1,6 +1,6 @@
 <template>
   <div class="stackable ui grid Image-Segment no-padding">
-    <div class="fourteen wide column">
+    <div class="ten wide column">
       <div class="ui container">
         <div class="ui raised segment Image-Segment--title">
           <h1 class="ui header white-text">PURCHASING ASSISTANT</h1>

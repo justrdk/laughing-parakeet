@@ -1,16 +1,16 @@
 <template>
   <div class="stackable ui grid Bottom-Segment">
-    <div class="twelve wide column">
+    <div class="ten wide column">
       <div class="ui container">
         <div class="ui raised segment Bottom-Segment--title">
           <div class="ui two column grid">
             <div class="column Bottom-Segment--column">
               <h1 class="ui header align-left">Application Procedure</h1>
-              <ul class="ui bulleted list Bottom-Segment--list">
-                <div class="item">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</div>
-                <div class="item">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</div>
-                <div class="item">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</div>
-                <div class="item">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</div>
+              <ul class="ui bulleted list Bottom-Segment--list align-left">
+                <div class="item">Lorem ipsum dolor sit amet, consectetur.</div>
+                <div class="item">Lorem ipsum dolor sit amet, consectetur.</div>
+                <div class="item">Lorem ipsum dolor sit amet, consectetur.</div>
+                <div class="item">Lorem ipsum dolor sit amet, consectetur.</div>
               </ul>
             </div>
             <div class="column Bottom-Segment--column">
