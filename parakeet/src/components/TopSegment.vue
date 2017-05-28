@@ -1,6 +1,6 @@
 <template>
-  <div class="ui grid Image-Segment no-padding">
-    <div class="sixteen wide column">
+  <div class="stackable ui grid Image-Segment no-padding">
+    <div class="fourteen wide column">
       <div class="ui container">
         <div class="ui raised segment Image-Segment--title">
           <h1 class="ui header white-text">PURCHASING ASSISTANT</h1>
@@ -22,7 +22,6 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 305px;
   background-image: url('../assets/top-image.jpg');
   &--title {
     background-color: rgba(0, 0, 0, 0.37);

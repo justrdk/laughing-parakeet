@@ -1,6 +1,6 @@
 <template>
-  <div class="ui grid Bottom-Segment">
-    <div class="sixteen wide column">
+  <div class="stackable ui grid Bottom-Segment">
+    <div class="fourteen wide column">
       <div class="ui container">
         <div class="ui raised segment Bottom-Segment--title">
           <div class="ui two column grid">
@@ -38,7 +38,6 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 265px;
   background-image: url('../assets/top-image.jpg');
   &--column {
     padding: 40px !important;
