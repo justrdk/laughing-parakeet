@@ -83,10 +83,10 @@
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
+          </div> <!--endform-->
+        </div> <!-- end container -->
+      </div> <!-- end column -->
+    </div> <!-- end row -->
   </div>
 </template>
 

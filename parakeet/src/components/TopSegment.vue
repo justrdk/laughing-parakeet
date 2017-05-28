@@ -1,8 +1,8 @@
 <template>
-  <div class="ui grid top-segment no-padding">
+  <div class="ui grid Image-Segment no-padding">
     <div class="sixteen wide column">
       <div class="ui container">
-        <div class="ui raised segment title-segment">
+        <div class="ui raised segment Image-Segment--title">
           <h1 class="ui header white-text">PURCHASING ASSISTANT</h1>
           <h2 class="ui header white-text">AMSTERDAM, THE NETHERLANDS</h2>
         </div>
@@ -18,13 +18,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.top-segment {
+.Image-Segment {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 305px;
   background-image: url('../assets/top-image.jpg');
-  .title-segment {
+  &--title {
     background-color: rgba(0, 0, 0, 0.37);
     h1.header {
       letter-spacing: 1.1px;
