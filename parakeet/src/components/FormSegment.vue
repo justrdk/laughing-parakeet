@@ -11,7 +11,7 @@
       <div class="sixteen wide column">
         <div class="ui container">
           <div class="ui large form">
-            <h4 class="ui header Form--information-title align-left">Personal Information*</h4>
+            <h4 class="ui header Form--information-title align-left">Personal Details*</h4>
             <div class="two fields">
               <div class="field">
                 <input class="Form--input" type="text" name="first-name" placeholder="First Name">

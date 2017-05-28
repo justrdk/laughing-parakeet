@@ -1,6 +1,6 @@
 <template>
   <div class="stackable ui grid Bottom-Segment">
-    <div class="fourteen wide column">
+    <div class="twelve wide column">
       <div class="ui container">
         <div class="ui raised segment Bottom-Segment--title">
           <div class="ui two column grid">
@@ -39,7 +39,9 @@ export default {
   align-items: center;
   justify-content: center;
   background-image: url('../assets/top-image.jpg');
+  min-height: 400px;
   &--column {
+    min-height: 265px;
     padding: 40px !important;
   }
   &--title {

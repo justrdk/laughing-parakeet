@@ -23,7 +23,9 @@ export default {
   align-items: center;
   justify-content: center;
   background-image: url('../assets/top-image.jpg');
+  min-height: 305px;
   &--title {
+    min-height: 174px;
     background-color: rgba(0, 0, 0, 0.37);
     h1.header {
       letter-spacing: 1.1px;
