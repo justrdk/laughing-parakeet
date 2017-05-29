@@ -1,17 +1,22 @@
 <template>
   <div id="app">
+    <Sidebar></Sidebar>
     <Navbar></Navbar>
-    <router-view></router-view>
+    <div class="pusher">
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 
 <script>
 import Navbar from '@/components/Navbar';
+import Sidebar from '@/components/Sidebar';
 
 export default {
   name: 'app',
   components: {
     Navbar,
+    Sidebar,
   },
 };
 </script>
@@ -19,6 +24,22 @@ export default {
 <style>
 @import url('https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:400,700');
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
+@media (max-width: 991px) {
+  .desktop.only {
+    display: none !important;
+  }
+  .mobile.only {
+    display:block !important;
+  }
+}
+@media (min-width: 992px) {
+  .desktop.only {
+    display: block !important;
+  }
+  .mobile.only {
+    display:none !important;
+  }
+}
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

@@ -1,27 +1,30 @@
 <template>
-<div class="ui fixed inverted menu navbar">
+<div class="ui fixed inverted main menu navbar">
   <div class="ui container">
    <div class="left menu">
-      <div class="header item borderless">
+      <div class="desktop only header item borderless">
           Logo
       </div>
+      <div class="mobile only header item borderless hidden" @click="toggleSidebar">
+          <i class="icon content"></i>
+      </div>
     </div>
-    <a class="item borderless">
+    <a class="desktop only item borderless">
       Home
     </a>
-     <a class="item borderless">
+     <a class="desktop only item borderless">
       Jobs
     </a>
-     <a class="item borderless">
+     <a class="desktop only item borderless">
       About
     </a>
-    <a class="item borderless">
+    <a class="desktop only item borderless">
       Departments
     </a>
-    <a class="item borderless">
+    <a class="desktop only item borderless">
       Contact
     </a>
-    <div class="right menu">
+    <div class="desktop only right menu">
       <div class="item search-item borderless">
         <div class="ui input">
           <input type="text" placeholder="SEARCH FOR JOBS BY KEYWORD">
@@ -35,6 +38,11 @@
 <script>
   export default {
     name: 'navbar',
+    methods: {
+      toggleSidebar() {
+        $('.ui.sidebar').sidebar('toggle');
+      },
+    },
   };
 </script>
 
