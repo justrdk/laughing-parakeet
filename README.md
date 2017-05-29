@@ -1,4 +1,4 @@
-#  aughing parakeet
+#  laughing parakeet
 
 > Project generated with Vue-Cli for startup boilerplate.
 
