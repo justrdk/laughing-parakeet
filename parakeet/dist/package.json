@@ -1,0 +1,10 @@
+{
+ "name": "laughingparakeet",
+ "version": "1.0.0",
+ "description": "endouble exercise",
+ "author": "Osman Hernandez",
+ "private": true,
+ "scripts": {
+   "postinstall": "npm install express"
+ }
+}
