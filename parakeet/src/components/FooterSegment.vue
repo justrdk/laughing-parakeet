@@ -24,24 +24,24 @@
           </div>
           <div class="column">
             <h4 class="ui header Footer--title align-left">Follow Us</h4>
-            <div class="ui two column grid align-left">
-            <div class="column">
-              <div class="ui list Footer--list">
-                <div class="item"><i class="circular small users icon"></i> <div class="content">Newsletter</div></div>
-                <div class="item"><i class="circular small instagram icon"></i><div class="content">Instagram</div></div>
-                <div class="item"><i class="circular small twitter icon"></i><div class="content">Twitter</div></div>
-                <div class="item"><i class="circular small tumblr icon"></i><div class="content">Tumblr</div></div>
-                <div class="item"><i class="circular small linkedin icon"></i><div class="content">Linkedin</div></div>
+            <div class="ui two column grid">
+              <div class="column">
+                <div class="ui list Footer--list">
+                  <div class="item"><i class="circular small users icon"></i> <div class="content">Newsletter</div></div>
+                  <div class="item"><i class="circular small instagram icon"></i><div class="content">Instagram</div></div>
+                  <div class="item"><i class="circular small twitter icon"></i><div class="content">Twitter</div></div>
+                  <div class="item"><i class="circular small tumblr icon"></i><div class="content">Tumblr</div></div>
+                  <div class="item"><i class="circular small linkedin icon"></i><div class="content">Linkedin</div></div>
+                </div>
               </div>
-            </div>
-            <div class="column">
-              <div class="ui list Footer--list">
-                <div class="item"><i class="circular small facebook f icon"></i> <div class="content">Facebook</div></div>
-                <div class="item"><i class="circular small pinterest icon"></i><div class="content">Pinterest</div></div>
-                <div class="item"><i class="circular small youtube icon"></i><div class="content">Youtube</div></div>
-                <div class="item"><i class="circular small google icon"></i><div class="content">Google</div></div>
+              <div class="column">
+                <div class="ui list Footer--list">
+                  <div class="item"><i class="circular small facebook f icon"></i> <div class="content">Facebook</div></div>
+                  <div class="item"><i class="circular small pinterest icon"></i><div class="content">Pinterest</div></div>
+                  <div class="item"><i class="circular small youtube icon"></i><div class="content">Youtube</div></div>
+                  <div class="item"><i class="circular small google icon"></i><div class="content">Google</div></div>
+                </div>
               </div>
-            </div>
             </div>
           </div>
           <div class="column">
@@ -51,6 +51,7 @@
         </div>
       </div>
     </div>
+    <div class="row last-segment"></div>
   </div>
 </template>
 <script>
@@ -59,6 +60,16 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+@media (max-width: 991px) {
+  .Footer {
+    &--title, &--subtitle, &--list, &--item {
+      text-align: center !important;
+    }
+    &--subtitle {
+      float: none !important;
+    }
+  }
+}
 .Footer {
   &--title, &--subtitle, &--list, &--item {
     font-family: 'Open Sans', sans-serif;
@@ -72,6 +83,10 @@ export default {
   }
   &--list, &--item {
     color: #979797;
+  }
+  .last-segment {
+    height: 58px;
+    background-color: #f9f9f9;
   }
 }
 </style>
