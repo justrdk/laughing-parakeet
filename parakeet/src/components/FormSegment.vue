@@ -11,7 +11,7 @@
       <div class="sixteen wide column">
         <div class="ui container">
           <vue-form :state="formstate" v-model="formstate" @submit.prevent="onSubmit" class="ui large form">
-            <h4 class="ui header Form--information-title align-left">Personal Details*</h4>
+            <h4 class="ui header Form--information-title align-left">Personal Details* {{model.dob}}</h4>
             <div class="two fields">
               <div class="field" :class="fieldClassName(formstate.firstname)">
                 <validate auto-label class="form-group required-field">
@@ -39,11 +39,13 @@
             <div class="two fields">
                 <div class="field" :class="fieldClassName(formstate.dob)">
                   <validate auto-label class="form-group required-field">
-                    <div class="ui icon input">
-                      <i class="checkmark icon"
-                      v-show="formstate.dob && (formstate.dob.$dirty || formstate.dob.$touched || formstate.dob.$submitted) && formstate.dob.$valid"></i>
-                      <input class="Form--input" :class="fieldClassName(formstate.dob)" v-model ="model.dob"
-                      type="text" name="dob" placeholder="Date of birth" required>
+                    <div class="ui calendar" id="dobcalendar">
+                      <div class="ui icon input">
+                        <i class="checkmark icon"
+                        v-show="formstate.dob && (formstate.dob.$dirty || formstate.dob.$touched || formstate.dob.$submitted) && formstate.dob.$valid"></i>
+                        <input class="Form--input" :class="fieldClassName(formstate.dob)" v-model ="model.dob"
+                        type="text" name="dob" placeholder="Date of birth" required>
+                      </div>
                     </div>
                   </validate>
                 </div>
@@ -116,49 +118,65 @@
                       <i class="checkmark icon"
                       v-show="formstate.motivation && (formstate.motivation.$dirty || formstate.motivation.$touched || formstate.motivation.$submitted) && formstate.motivation.$valid"></i>
                       <textarea name="motivation" class="Form--textarea" :class="fieldClassName(formstate.motivation)"
-                        v-model="model.motivation" rows="5" cols="50" required>
+                        v-model="model.motivation" rows="6" cols="50" required>
                       </textarea>
                     </div>
                 </validate>
               </div>
               <div class="field">
-                <label class="Form--label align-left">Attach your documents (pdf, doc(x), jpg max. 4 Mb)</label>
+                <label class="Form--label align-left">Attach your documents (pdf, doc(x), rtf, txt, jpg, png, max. 4 Mb)</label>
                 <div class="inline fields">
-                  <div class="three wide field">
+                  <div class="four wide field">
                     <label class="Form--uploadLabel align-left">Resume*</label>
                      <i class="checkmark icon"
                       v-show="validResume === true"></i>
                   </div>
-                  <div class="four wide field">
+                  <div class="eight wide field">
                     <button class="fluid ui button Form--button">
                       <i class="desktop icon"></i> Upload
                       <input type="file" class="Form--upload" @change="resumeChange" />
                     </button>
+                    <span class="upload-error" v-show="resumeError !== ''">{{resumeError}}</span>
                   </div>
                 </div>
                 <div class="inline fields">
-                  <div class="three wide field">
+                  <div class="four wide field">
                     <label class="Form--uploadLabel align-left">Portfolio</label>
                     <i class="checkmark icon"
                       v-show="validPortfolio === true"></i>
                   </div>
-                  <div class="four wide field">
+                  <div class="eight wide field">
                     <button class="fluid ui button Form--button">
                       <i class="desktop icon"></i> Upload
                       <input type="file" class="Form--upload" @change="portfolioChange" />
                     </button>
+                    <span class="upload-error" v-show="portfolioError !== ''">{{portfolioError}}</span>
                   </div>
                 </div>
                 <div class="inline fields">
-                  <div class="three wide field">
+                  <div class="four wide field">
                     <label class="Form--uploadLabel align-left">Photo</label>
                     <i class="checkmark icon"
                       v-show="validPhoto === true"></i>
                   </div>
-                  <div class="four wide field">
-                    <button class="fluid ui button Form--button">
+                  <div class="eight wide field">
+                    <button class="ui fluid button Form--button">
                       <i class="desktop icon"></i> Upload
                       <input type="file" class="Form--upload" @change="photoChange" />
+                    </button>
+                    <span class="upload-error" v-show="photoError !== ''">{{photoError}}</span>
+                  </div>
+                </div>
+                <div class="inline fields">
+                  <div class="four wide field">
+                    <div class="ui checkbox">
+                      <input type="checkbox" name="example">
+                      <label id="submitLabel" class="Form--submitLabel align-left">Send me a copy</label>
+                    </div>
+                  </div>
+                  <div class="eight wide field">
+                    <button class="fluid ui button Form--button" type="submit">
+                      Apply for this job
                     </button>
                   </div>
                 </div>
@@ -168,16 +186,33 @@
         </div> <!-- end container -->
       </div> <!-- end column -->
     </div> <!-- end row -->
+    <confirmation-modal></confirmation-modal>
   </div>
 </template>
 
 <script>
 import VueForm from 'vue-form';
 import Vue from 'vue';
+import ConfirmationModal from './ConfirmationModal';
 
+const FILE_SIZE = 4194304;
+const UPLOAD_ERROR = 'Invalid file type or size';
 Vue.use(VueForm);
 
 export default {
+  mounted() {
+    const today = new Date();
+    $('#dobcalendar').calendar({
+      type: 'date',
+      maxDate: new Date(today.getFullYear(), today.getMonth(), today.getDate()),
+      onChange: (date, text) => {
+        this.model.dob = text;
+      },
+    });
+  },
+  components: {
+    ConfirmationModal,
+  },
   data() {
     return {
       formstate: {},
@@ -198,6 +233,10 @@ export default {
       validResume: false,
       validPortfolio: false,
       validPhoto: false,
+      validFileSize: 4000,
+      resumeError: '',
+      portfolioError: '',
+      photoError: '',
     };
   },
   methods: {
@@ -215,7 +254,7 @@ export default {
     },
     validPhotoType(type) {
       switch (type) {
-        case 'jpg':
+        case 'jpeg':
         case 'png':
           return true;
         default:
@@ -236,34 +275,59 @@ export default {
     resumeChange(e) {
       if (e.target.files.length === 1) {
         const file = e.target.files[0];
-        const { name, type } = file;
+        const { name, type, size } = file;
         this.resume = name;
         const fileType = type.split('/')[1];
-        this.validResume = this.validFileType(fileType);
+        this.validResume = this.validFileType(fileType) && size < FILE_SIZE;
+        this.resumeError = !this.validResume ? 'Invalid file type or size' : '';
       } else {
+        this.resumeError = 'Invalid file type or size';
         this.validResume = false;
       }
     },
     portfolioChange(e) {
       if (e.target.files.length === 1) {
         const file = e.target.files[0];
-        const { name, type } = file;
+        const { name, type, size } = file;
         this.resume = name;
         const fileType = type.split('/')[1];
-        this.validPortfolio = this.validFileType(fileType);
+        this.validPortfolio = this.validFileType(fileType) && size < FILE_SIZE;
+        this.portfolioError = !this.validPortfolio ? 'Invalid file type or size' : '';
       } else {
+        this.portfolioError = 'Invalid file type or size';
         this.validPortfolio = false;
       }
     },
     photoChange(e) {
       if (e.target.files.length === 1) {
         const file = e.target.files[0];
-        const { name, type } = file;
+        const { name, type, size } = file;
         this.resume = name;
         const fileType = type.split('/')[1];
-        this.validPhoto = this.validPhotoType(fileType);
+        this.validPhoto = this.validPhotoType(fileType) && size < FILE_SIZE;
+        this.photoError = !this.validPhoto ? UPLOAD_ERROR : '';
       } else {
+        this.photoError = UPLOAD_ERROR;
         this.validPhoto = false;
+      }
+    },
+    onSubmit() {
+      if (this.formstate.$valid && this.validPortfolio && this.validResume && this.validPhoto) {
+        $('.Confirmation')
+          .modal({
+            closable: false,
+            blurring: true,
+          })
+          .modal('show');
+      }
+      if (!this.validPortfolio) {
+        this.portfolioError = UPLOAD_ERROR;
+      }
+      if (!this.validResume) {
+        this.resumeError = UPLOAD_ERROR;
+      }
+      if (!this.validPhoto) {
+        this.photoError = UPLOAD_ERROR;
       }
     },
   },
@@ -296,6 +360,13 @@ export default {
   &--uploadLabel {
     font-size: 12px !important;
   }
+  #submitLabel {
+    color: #979797;
+    font-size: 12px;
+    font-weight: bold;
+    font-family: 'Open Sans', sans-serif;
+    letter-spacing: 0.5px;
+  }
   &--input {
     height: 42px;
     font-weight: bold;
@@ -322,7 +393,6 @@ export default {
   }
   &--button {
     position: relative;
-    overflow: hidden;
     background-color: #005c9d;
     color: #ffffff;
     border: none !important;
@@ -342,6 +412,12 @@ export default {
     cursor: pointer;
     opacity: 0;
     filter: alpha(opacity=0);
+  }
+  .upload-error {
+    font-size: 12px;
+    color: #c80000;
+    font-weight: bold;
+    font-family: 'Open Sans', sans-serif;
   }
 }
 </style>
